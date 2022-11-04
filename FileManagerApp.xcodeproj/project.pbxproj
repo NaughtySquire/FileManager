@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		062333304387A537E19A6F4A /* Pods_FileManagerApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A10024B78D06DFDDA5BC0880 /* Pods_FileManagerApp.framework */; };
+		799FC39F2915107D00A27872 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 799FC39E2915107D00A27872 /* KeychainAccess */; };
 		79C10D832913D58D0001E03E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C10D822913D58D0001E03E /* AppDelegate.swift */; };
 		79C10D8C2913D58E0001E03E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C10D8B2913D58E0001E03E /* Assets.xcassets */; };
 		79C10D8F2913D58F0001E03E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79C10D8D2913D58F0001E03E /* LaunchScreen.storyboard */; };
@@ -15,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4107CEC932EDDB40BD935F33 /* Pods-FileManagerApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FileManagerApp.debug.xcconfig"; path = "Target Support Files/Pods-FileManagerApp/Pods-FileManagerApp.debug.xcconfig"; sourceTree = "<group>"; };
 		79C10D7F2913D58D0001E03E /* FileManagerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FileManagerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79C10D822913D58D0001E03E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		79C10D8B2913D58E0001E03E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -22,6 +25,8 @@
 		79C10D902913D58F0001E03E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79C10D962913D6340001E03E /* DirectoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryViewController.swift; sourceTree = "<group>"; };
 		79C10D982913D6560001E03E /* FileManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerService.swift; sourceTree = "<group>"; };
+		8F4704F761065DAE67597789 /* Pods-FileManagerApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FileManagerApp.release.xcconfig"; path = "Target Support Files/Pods-FileManagerApp/Pods-FileManagerApp.release.xcconfig"; sourceTree = "<group>"; };
+		A10024B78D06DFDDA5BC0880 /* Pods_FileManagerApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FileManagerApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +34,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				799FC39F2915107D00A27872 /* KeychainAccess in Frameworks */,
+				062333304387A537E19A6F4A /* Pods_FileManagerApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		161EF8D9EA75FFEAA6234534 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A10024B78D06DFDDA5BC0880 /* Pods_FileManagerApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		79C10D762913D58D0001E03E = {
 			isa = PBXGroup;
 			children = (
 				79C10D812913D58D0001E03E /* FileManagerApp */,
 				79C10D802913D58D0001E03E /* Products */,
+				CA734A7ED41249E9CF2D7127 /* Pods */,
+				161EF8D9EA75FFEAA6234534 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +81,15 @@
 			path = FileManagerApp;
 			sourceTree = "<group>";
 		};
+		CA734A7ED41249E9CF2D7127 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4107CEC932EDDB40BD935F33 /* Pods-FileManagerApp.debug.xcconfig */,
+				8F4704F761065DAE67597789 /* Pods-FileManagerApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,6 +97,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 79C10D932913D58F0001E03E /* Build configuration list for PBXNativeTarget "FileManagerApp" */;
 			buildPhases = (
+				4919395CFEEA5E1BAA04D39B /* [CP] Check Pods Manifest.lock */,
 				79C10D7B2913D58D0001E03E /* Sources */,
 				79C10D7C2913D58D0001E03E /* Frameworks */,
 				79C10D7D2913D58D0001E03E /* Resources */,
@@ -80,6 +107,9 @@
 			dependencies = (
 			);
 			name = FileManagerApp;
+			packageProductDependencies = (
+				799FC39E2915107D00A27872 /* KeychainAccess */,
+			);
 			productName = FileManagerApp;
 			productReference = 79C10D7F2913D58D0001E03E /* FileManagerApp.app */;
 			productType = "com.apple.product-type.application";
@@ -108,6 +138,9 @@
 				Base,
 			);
 			mainGroup = 79C10D762913D58D0001E03E;
+			packageReferences = (
+				799FC39D2915107D00A27872 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+			);
 			productRefGroup = 79C10D802913D58D0001E03E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -128,6 +161,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4919395CFEEA5E1BAA04D39B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FileManagerApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		79C10D7B2913D58D0001E03E /* Sources */ = {
@@ -272,6 +330,7 @@
 		};
 		79C10D942913D58F0001E03E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4107CEC932EDDB40BD935F33 /* Pods-FileManagerApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -300,6 +359,7 @@
 		};
 		79C10D952913D58F0001E03E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8F4704F761065DAE67597789 /* Pods-FileManagerApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -348,6 +408,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		799FC39D2915107D00A27872 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		799FC39E2915107D00A27872 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 799FC39D2915107D00A27872 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 79C10D772913D58D0001E03E /* Project object */;
 }
