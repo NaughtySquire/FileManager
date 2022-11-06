@@ -2,7 +2,6 @@ import UIKit
 
 class DirectoryViewController: UIViewController, UINavigationControllerDelegate {
 
-
     // MARK: - properties
     let fileManagerService: FileManagerServiceProtocol
     let directoryURL: URL
@@ -23,7 +22,7 @@ class DirectoryViewController: UIViewController, UINavigationControllerDelegate 
     init(_ fileManagerService: FileManagerServiceProtocol, _ directoryURL: URL) {
         self.fileManagerService = fileManagerService
         self.directoryURL = directoryURL
-        super.init(nibName:  nil, bundle: nil)
+        super.init(nibName: nil, bundle: nil)
 
     }
 
@@ -48,7 +47,7 @@ class DirectoryViewController: UIViewController, UINavigationControllerDelegate 
 
     // MARK: - functions
 
-    func updateContentURLs(){
+    func updateContentURLs() {
         let result = fileManagerService.contentsOfDirectory()
         switch result {
         case .success(let urls):
@@ -59,7 +58,7 @@ class DirectoryViewController: UIViewController, UINavigationControllerDelegate 
         }
     }
 
-    func setupNavigationBar(){
+    func setupNavigationBar() {
         navigationController!.navigationBar.prefersLargeTitles = true
         let addFolder = UIBarButtonItem(image:
                                             UIImage(systemName: "folder.badge.plus"),
@@ -77,11 +76,11 @@ class DirectoryViewController: UIViewController, UINavigationControllerDelegate 
     }
 
     @objc
-    func addFolderTapped(){
+    func addFolderTapped() {
         let alert = UIAlertController(title: "Create new folder",
                                       message: nil,
                                       preferredStyle: .alert)
-        alert.addTextField(){ textField in
+        alert.addTextField { textField in
             textField.placeholder = "Folder name"
         }
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
@@ -99,21 +98,22 @@ class DirectoryViewController: UIViewController, UINavigationControllerDelegate 
     }
 
     @objc
-    func addFileTapped(){
+    func addFileTapped() {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         present(imagePicker, animated: true)
     }
 
     @objc
-    func removeContent(){
+    func removeContent() {
         fileManagerService.removeContent()
         updateContentURLs()
         contentTable.reloadData()
     }
 
     // MARK: - constraints
-    func makeConstraints(){
+
+    func makeConstraints() {
         contentTable.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             contentTable.leftAnchor.constraint(equalTo: view.leftAnchor),
@@ -126,19 +126,21 @@ class DirectoryViewController: UIViewController, UINavigationControllerDelegate 
 }
 // MARK: - extensions
 
-extension DirectoryViewController: UIImagePickerControllerDelegate{
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        fileManagerService.createFile(url: info[.imageURL] as! URL)
+extension DirectoryViewController: UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo
+                                 info: [UIImagePickerController.InfoKey: Any]) {
+        guard let url = info[.imageURL] as? URL else { return }
+        fileManagerService.createFile(url: url)
         updateContentURLs()
         contentTable.reloadData()
         dismiss(animated: true)
     }
 }
 
-extension DirectoryViewController: UITableViewDelegate{
+extension DirectoryViewController: UITableViewDelegate {
 
 }
-extension DirectoryViewController: UITableViewDataSource{
+extension DirectoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         contentURLs.count
     }
@@ -146,9 +148,9 @@ extension DirectoryViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let dirContentURL = contentURLs[indexPath.row]
-        if (dirContentURL.hasDirectoryPath){
+        if dirContentURL.hasDirectoryPath {
             cell.accessoryType = .disclosureIndicator
-        }else{
+        } else {
             cell.accessoryType = .none
         }
         var cellContent = UIListContentConfiguration.cell()
@@ -159,15 +161,16 @@ extension DirectoryViewController: UITableViewDataSource{
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.cellForRow(at: indexPath)?.setSelected(false, animated: true)
-        if (contentURLs[indexPath.row].hasDirectoryPath){
+        if contentURLs[indexPath.row].hasDirectoryPath {
             let newDirectoryUrl = contentURLs[indexPath.row]
             let newDirectoryVC = DirectoryViewController(fileManagerService,
                                                          newDirectoryUrl)
             navigationController?.pushViewController(newDirectoryVC, animated: true)
         }
     }
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let delete = UIContextualAction(style: .destructive, title: "Delete"){ [weak self] (action, view, nil) in
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt
+                     indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (_, _, _) in
             guard let self = self else { return }
             self.fileManagerService.removeItem(url: self.contentURLs[indexPath.row])
             self.updateContentURLs()

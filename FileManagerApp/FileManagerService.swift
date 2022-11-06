@@ -1,6 +1,6 @@
 import Foundation
 
-protocol FileManagerServiceProtocol{
+protocol FileManagerServiceProtocol {
     func contentsOfDirectory() -> Result<[URL], Error>
     func createDirectory(with name: String)
     func createFile(url: URL)
@@ -9,17 +9,17 @@ protocol FileManagerServiceProtocol{
     func removeItem(url: URL)
 }
 
-class FileManagerService: FileManagerServiceProtocol{
+class FileManagerService: FileManagerServiceProtocol {
 
     private let fileManager = FileManager.default
     private var currentDirectoryURL: URL!
 
-    func contentsOfDirectory() -> Result<[URL], Error>{
+    func contentsOfDirectory() -> Result<[URL], Error> {
         do {
             let urls = try fileManager.contentsOfDirectory(at: currentDirectoryURL,
                                                            includingPropertiesForKeys: nil)
             return .success(urls)
-        }catch let error{
+        } catch let error {
             return .failure(error)
         }
     }
@@ -30,7 +30,7 @@ class FileManagerService: FileManagerServiceProtocol{
         do {
             try fileManager.createDirectory(at: newDirectoryURL,
                                             withIntermediateDirectories: true)
-        }catch let error{
+        } catch let error {
             print(error.localizedDescription)
         }
     }
@@ -44,9 +44,9 @@ class FileManagerService: FileManagerServiceProtocol{
 
     func removeContent() {
         let result = contentsOfDirectory()
-        switch result{
+        switch result {
         case .success(let urls):
-            for url in urls{
+            for url in urls {
                 try? fileManager.removeItem(at: url)
             }
         case .failure(let error):
@@ -57,11 +57,8 @@ class FileManagerService: FileManagerServiceProtocol{
         try? fileManager.removeItem(at: url)
     }
 
-
-
     func setCurrentDirectoryURL(_ directoryURL: URL) {
         self.currentDirectoryURL = directoryURL
     }
-
 
 }
