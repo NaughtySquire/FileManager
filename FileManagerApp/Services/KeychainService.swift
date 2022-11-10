@@ -31,7 +31,7 @@ final class KeychainService: KeychainServiceProtocol {
     }
 
     func removeData() {
-        keychain[key] = nil
+        try? keychain.remove(key)
     }
 
 }

@@ -3,7 +3,7 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
+    var coordinator: Coordinator?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions
                      launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -11,17 +11,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navBarAppearance.configureWithDefaultBackground()
         UINavigationBar.appearance().standardAppearance = navBarAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
-
-        window = UIWindow(frame: UIScreen.main.bounds)
-        let navigationController = UINavigationController(rootViewController:
-                                                            PasswordViewController())
-        window?.rootViewController = navigationController
-        window?.makeKeyAndVisible()
+        coordinator = Coordinator()
+        coordinator?.start()
+        setupUserDefaults()
         return true
     }
 
-    func applicationWillTerminate(_ application: UIApplication) {
-        KeychainService().removeData()
+    private func setupUserDefaults() {
+        let userDefaults = UserDefaults.standard
+        if !userDefaults.bool(forKey: "isNotFirstLauch") {
+            userDefaults.set(true, forKey: "isNotFirstLauch")
+            userDefaults.set(true, forKey: "sortByNormalOrder")
+            userDefaults.set(true, forKey: "showPhotoSize")
+        }
+        userDefaults.set(true, forKey: "isNotFirstLauch")
+
     }
 
 }

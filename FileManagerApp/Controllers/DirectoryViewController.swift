@@ -5,6 +5,7 @@ class DirectoryViewController: UIViewController, UINavigationControllerDelegate 
     // MARK: - properties
     let fileManagerService: FileManagerServiceProtocol
     let directoryURL: URL
+    let userDefaults = UserDefaults.standard
     var contentURLs: [URL]!
 
     // MARK: - views
@@ -23,6 +24,7 @@ class DirectoryViewController: UIViewController, UINavigationControllerDelegate 
         self.fileManagerService = fileManagerService
         self.directoryURL = directoryURL
         super.init(nibName: nil, bundle: nil)
+        tabBarItem.image = UIImage(systemName: "doc")
 
     }
 
@@ -31,10 +33,10 @@ class DirectoryViewController: UIViewController, UINavigationControllerDelegate 
     }
 
     // MARK: - life cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGreen
-        self.title = directoryURL.lastPathComponent
         view.addSubview(contentTable)
         setupNavigationBar()
         makeConstraints()
@@ -42,6 +44,8 @@ class DirectoryViewController: UIViewController, UINavigationControllerDelegate 
     override func viewWillAppear(_ animated: Bool) {
         fileManagerService.setCurrentDirectoryURL(directoryURL)
         updateContentURLs()
+
+        navigationController?.navigationBar.isHidden = false
         contentTable.reloadData()
     }
 
@@ -52,6 +56,11 @@ class DirectoryViewController: UIViewController, UINavigationControllerDelegate 
         switch result {
         case .success(let urls):
             contentURLs = urls
+            if userDefaults.bool(forKey: "sortByNormalOrder") {
+                contentURLs.sort(by: <)
+            } else {
+                contentURLs.sort(by: >)
+            }
         case .failure(let error):
             contentURLs = []
             print(error)
@@ -59,7 +68,7 @@ class DirectoryViewController: UIViewController, UINavigationControllerDelegate 
     }
 
     func setupNavigationBar() {
-        navigationController!.navigationBar.prefersLargeTitles = true
+        self.parent?.navigationItem.title = directoryURL.lastPathComponent
         let addFolder = UIBarButtonItem(image:
                                             UIImage(systemName: "folder.badge.plus"),
                                         style: .plain,
@@ -72,7 +81,7 @@ class DirectoryViewController: UIViewController, UINavigationControllerDelegate 
                                         style: .plain,
                                         target: self,
                                         action: #selector(removeContent))
-        navigationItem.rightBarButtonItems = [addFolder, addFile, removeAll]
+        self.parent?.navigationItem.rightBarButtonItems = [addFolder, addFile, removeAll]
     }
 
     @objc
@@ -147,14 +156,22 @@ extension DirectoryViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        var cellContent = UIListContentConfiguration.cell()
         let dirContentURL = contentURLs[indexPath.row]
         if dirContentURL.hasDirectoryPath {
             cell.accessoryType = .disclosureIndicator
         } else {
+            if userDefaults.bool(forKey: "showPhotoSize") {
+                if let imageData = try? Data(contentsOf: dirContentURL) {
+                    cellContent.secondaryText = String(imageData.count) + " bytes"
+                    cellContent.image = UIImage(data: imageData)
+                }
+            }
             cell.accessoryType = .none
         }
-        var cellContent = UIListContentConfiguration.cell()
+
         cellContent.text = dirContentURL.lastPathComponent
+
         cell.contentConfiguration = cellContent
         return cell
     }

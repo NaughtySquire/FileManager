@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		062333304387A537E19A6F4A /* Pods_FileManagerApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A10024B78D06DFDDA5BC0880 /* Pods_FileManagerApp.framework */; };
-		796D32D72916BB6B00B9C306 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 796D32D62916BB6B00B9C306 /* SnapKit-Dynamic */; };
+		79688A6A291D12820079804E /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79688A69291D12820079804E /* Coordinator.swift */; };
+		79688A6C291D142B0079804E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79688A6B291D142B0079804E /* SettingsViewController.swift */; };
+		79688A70291D58440079804E /* URL+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79688A6F291D58440079804E /* URL+extension.swift */; };
 		796D32DA2916BB7F00B9C306 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 796D32D92916BB7F00B9C306 /* KeychainAccess */; };
 		799FC3A12915151100A27872 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799FC3A02915151100A27872 /* PasswordViewController.swift */; };
 		799FC3A3291542F800A27872 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799FC3A2291542F800A27872 /* KeychainService.swift */; };
@@ -21,6 +23,9 @@
 
 /* Begin PBXFileReference section */
 		4107CEC932EDDB40BD935F33 /* Pods-FileManagerApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FileManagerApp.debug.xcconfig"; path = "Target Support Files/Pods-FileManagerApp/Pods-FileManagerApp.debug.xcconfig"; sourceTree = "<group>"; };
+		79688A69291D12820079804E /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		79688A6B291D142B0079804E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		79688A6F291D58440079804E /* URL+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+extension.swift"; sourceTree = "<group>"; };
 		799FC3A02915151100A27872 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		799FC3A2291542F800A27872 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		79C10D7F2913D58D0001E03E /* FileManagerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FileManagerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,7 +45,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				062333304387A537E19A6F4A /* Pods_FileManagerApp.framework in Frameworks */,
-				796D32D72916BB6B00B9C306 /* SnapKit-Dynamic in Frameworks */,
 				796D32DA2916BB7F00B9C306 /* KeychainAccess in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -54,6 +58,25 @@
 				A10024B78D06DFDDA5BC0880 /* Pods_FileManagerApp.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		79688A6D291D14440079804E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				79C10D962913D6340001E03E /* DirectoryViewController.swift */,
+				79688A6B291D142B0079804E /* SettingsViewController.swift */,
+				799FC3A02915151100A27872 /* PasswordViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		79688A6E291D29EB0079804E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				799FC3A2291542F800A27872 /* KeychainService.swift */,
+				79C10D982913D6560001E03E /* FileManagerService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		79C10D762913D58D0001E03E = {
@@ -78,10 +101,10 @@
 			isa = PBXGroup;
 			children = (
 				79C10D822913D58D0001E03E /* AppDelegate.swift */,
-				79C10D962913D6340001E03E /* DirectoryViewController.swift */,
-				79C10D982913D6560001E03E /* FileManagerService.swift */,
-				799FC3A02915151100A27872 /* PasswordViewController.swift */,
-				799FC3A2291542F800A27872 /* KeychainService.swift */,
+				79688A69291D12820079804E /* Coordinator.swift */,
+				79688A6D291D14440079804E /* Controllers */,
+				79688A6E291D29EB0079804E /* Services */,
+				79688A6F291D58440079804E /* URL+extension.swift */,
 				79C10D8B2913D58E0001E03E /* Assets.xcassets */,
 				79C10D8D2913D58F0001E03E /* LaunchScreen.storyboard */,
 				79C10D902913D58F0001E03E /* Info.plist */,
@@ -109,7 +132,8 @@
 				79C10D7B2913D58D0001E03E /* Sources */,
 				79C10D7C2913D58D0001E03E /* Frameworks */,
 				79C10D7D2913D58D0001E03E /* Resources */,
-				79E3C3942917B2E3008BA30F /* ShellScript */,
+				CE210546CEE99A79E2A35226 /* [CP] Embed Pods Frameworks */,
+				79688A68291BDE7B0079804E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -117,7 +141,6 @@
 			);
 			name = FileManagerApp;
 			packageProductDependencies = (
-				796D32D62916BB6B00B9C306 /* SnapKit-Dynamic */,
 				796D32D92916BB7F00B9C306 /* KeychainAccess */,
 			);
 			productName = FileManagerApp;
@@ -149,7 +172,6 @@
 			);
 			mainGroup = 79C10D762913D58D0001E03E;
 			packageReferences = (
-				796D32D52916BB6B00B9C306 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				796D32D82916BB7F00B9C306 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			productRefGroup = 79C10D802913D58D0001E03E /* Products */;
@@ -196,7 +218,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		79E3C3942917B2E3008BA30F /* ShellScript */ = {
+		79688A68291BDE7B0079804E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -213,6 +235,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
+		CE210546CEE99A79E2A35226 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FileManagerApp/Pods-FileManagerApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FileManagerApp/Pods-FileManagerApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FileManagerApp/Pods-FileManagerApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -221,7 +260,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				79C10D832913D58D0001E03E /* AppDelegate.swift in Sources */,
+				79688A70291D58440079804E /* URL+extension.swift in Sources */,
 				799FC3A12915151100A27872 /* PasswordViewController.swift in Sources */,
+				79688A6C291D142B0079804E /* SettingsViewController.swift in Sources */,
+				79688A6A291D12820079804E /* Coordinator.swift in Sources */,
 				79C10D972913D6340001E03E /* DirectoryViewController.swift in Sources */,
 				799FC3A3291542F800A27872 /* KeychainService.swift in Sources */,
 				79C10D992913D6560001E03E /* FileManagerService.swift in Sources */,
@@ -440,14 +482,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		796D32D52916BB6B00B9C306 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SnapKit/SnapKit";
-			requirement = {
-				branch = develop;
-				kind = branch;
-			};
-		};
 		796D32D82916BB7F00B9C306 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
@@ -459,11 +493,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		796D32D62916BB6B00B9C306 /* SnapKit-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 796D32D52916BB6B00B9C306 /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = "SnapKit-Dynamic";
-		};
 		796D32D92916BB7F00B9C306 /* KeychainAccess */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 796D32D82916BB7F00B9C306 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
