@@ -147,7 +147,9 @@ extension DirectoryViewController: UIImagePickerControllerDelegate {
 }
 
 extension DirectoryViewController: UITableViewDelegate {
-
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        80
+    }
 }
 extension DirectoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -156,15 +158,18 @@ extension DirectoryViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.translatesAutoresizingMaskIntoConstraints = false
         var cellContent = UIListContentConfiguration.cell()
         let dirContentURL = contentURLs[indexPath.row]
         if dirContentURL.hasDirectoryPath {
             cell.accessoryType = .disclosureIndicator
         } else {
-            if userDefaults.bool(forKey: "showPhotoSize") {
-                if let imageData = try? Data(contentsOf: dirContentURL) {
-                    cellContent.secondaryText = String(imageData.count) + " bytes"
-                    cellContent.image = UIImage(data: imageData)
+            if let imageData = try? Data(contentsOf: dirContentURL) {
+                let image = UIImage(data: imageData)
+                cellContent.image = image
+                cellContent.imageProperties.maximumSize = CGSize(width: 50, height: 50)
+                if userDefaults.bool(forKey: "showPhotoSize") {
+                    cellContent.secondaryText = String(imageData.count / 1024 / 1024) + " MBytes"
                 }
             }
             cell.accessoryType = .none

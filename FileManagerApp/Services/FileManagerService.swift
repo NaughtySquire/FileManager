@@ -35,11 +35,15 @@ class FileManagerService: FileManagerServiceProtocol {
         }
     }
 
-    func createFile(url file: URL) {
-        let fileData = file.dataRepresentation
-        let fileName = file.lastPathComponent
-        let pathMoveTo = currentDirectoryURL.appendingPathComponent(fileName).path
-        fileManager.createFile(atPath: pathMoveTo, contents: fileData)
+    func createFile(url: URL) {
+        do{
+            let fileData = try Data(contentsOf: url)
+            let fileName = url.lastPathComponent
+            let pathMoveTo = currentDirectoryURL.appendingPathComponent(fileName).path
+            fileManager.createFile(atPath: pathMoveTo, contents: fileData)
+        } catch let error {
+            print(error)
+        }
     }
 
     func removeContent() {

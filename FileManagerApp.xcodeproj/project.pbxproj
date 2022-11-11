@@ -105,7 +105,6 @@
 				79688A6D291D14440079804E /* Controllers */,
 				79688A6E291D29EB0079804E /* Services */,
 				79688A6F291D58440079804E /* URL+extension.swift */,
-
 				79C10D8B2913D58E0001E03E /* Assets.xcassets */,
 				79C10D8D2913D58F0001E03E /* LaunchScreen.storyboard */,
 				79C10D902913D58F0001E03E /* Info.plist */,
@@ -129,14 +128,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 79C10D932913D58F0001E03E /* Build configuration list for PBXNativeTarget "FileManagerApp" */;
 			buildPhases = (
-
 				4919395CFEEA5E1BAA04D39B /* [CP] Check Pods Manifest.lock */,
 				79C10D7B2913D58D0001E03E /* Sources */,
 				79C10D7C2913D58D0001E03E /* Frameworks */,
 				79C10D7D2913D58D0001E03E /* Resources */,
 				CE210546CEE99A79E2A35226 /* [CP] Embed Pods Frameworks */,
 				79688A68291BDE7B0079804E /* ShellScript */,
-
 			);
 			buildRules = (
 			);
@@ -197,7 +194,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
 
 /* Begin PBXShellScriptBuildPhase section */
 		4919395CFEEA5E1BAA04D39B /* [CP] Check Pods Manifest.lock */ = {
@@ -292,6 +288,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -353,6 +350,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
